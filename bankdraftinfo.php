@@ -138,7 +138,7 @@ function bankdraftinfo_civicrm_postProcess($formName, &$form) {
       $fields = array(
         "bank_account_number" => "Bank_Account_Number",
         "cad_bank_number" => "Bank_Institution_Number",
-        "cad_transit_number" => "Bank_Transit_Number",
+        "cad_transit_number" => "Branch_Transit_Number",
       );
       foreach ($fields as $key => $value) {
         $fid = civicrm_api3('CustomField', 'getvalue', array(
