@@ -141,14 +141,16 @@ function bankdraftinfo_civicrm_postProcess($formName, &$form) {
         "cad_transit_number" => "Branch_Transit_Number",
       );
       foreach ($fields as $key => $value) {
-        $fid = civicrm_api3('CustomField', 'getvalue', array(
-          'return' => "id",
-          'name' => $value,
-        ));
-        civicrm_api3('CustomValue', 'create', array(
-          'entity_id' => $form->_contactID,
-          'custom_' . $fid => $form->_params[$key],
-        ));
+        if (!empty($form->_params[$key])) {
+          $fid = civicrm_api3('CustomField', 'getvalue', array(
+            'return' => "id",
+            'name' => $value,
+          ));
+          civicrm_api3('CustomValue', 'create', array(
+            'entity_id' => $form->_contactID,
+            'custom_' . $fid => $form->_params[$key],
+          ));
+        }
       }
     }
   }
